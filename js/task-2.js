@@ -29,15 +29,14 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-images.forEach((image) => {
-  const listItem = document.createElement("li");
-  listItem.classList.add("gallery-item");
+const galleryHtml = images
+  .map(
+    (image) => `
+  <li class="gallery-item">
+    <img src="${image.url}" alt="${image.alt}" class="gallery-img">
+  </li>
+`
+  )
+  .join("");
 
-  const img = document.createElement("img");
-  img.classList.add("gallery-img");
-  img.src = image.url;
-  img.alt = image.alt;
-
-  listItem.appendChild(img);
-  gallery.appendChild(listItem);
-});
+gallery.innerHTML = galleryHtml;
